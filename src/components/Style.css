@@ -1,0 +1,12 @@
+.Button {
+  text-align: center;
+  background-color: #f8f8fa;
+  height: 50px;
+  width: 50px;
+  margin-left: 40px;
+  outline-color: aqua;
+}
+
+.H1 {
+  margin-left: 40px;
+}
