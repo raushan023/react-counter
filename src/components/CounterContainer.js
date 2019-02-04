@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Counter from "./Counter";
 import { connect } from 'react-redux';
-import { incCounter } from './action';
+import { incCounter, decCounter, resetCounter } from './action';
 
 class CounterContainer extends Component {
 
@@ -11,8 +11,8 @@ class CounterContainer extends Component {
       <Counter
         count={this.props.count}
         incCount={this.incrementCount}
-      // decCount={this.decrementCount}
-      // reset={this.resetCount}
+        decCount={this.decrementCount}
+        reset={this.resetCount}
       />
     );
   }
@@ -20,15 +20,19 @@ class CounterContainer extends Component {
   incrementCount = () => {
 
     const newCount = this.props.count + 1;
-    console.log('button clicked', newCount);
+    console.log('+ button clicked', newCount);
     this.props.incCounter(newCount);
   };
-  // decrementCount = () => {
-  //   this.setState({ count: this.state.count - 1 });
-  // };
-  // resetCount = () => {
-  //   this.setState({ count: 0 });
-  // };
+  decrementCount = () => {
+    const newCount = this.props.count - 1;
+    console.log('- button clicked', newCount);
+    this.props.decCounter(newCount);
+  };
+  resetCount = () => {
+    const newCount = 0;
+    console.log('reset button clicked', newCount);
+    this.props.resetCounter(newCount);
+  };
 }
 
 const mapStateToProps = (state) => {
@@ -36,7 +40,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  incCounter
+  incCounter, decCounter, resetCounter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterContainer);
